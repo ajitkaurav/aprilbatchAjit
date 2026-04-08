@@ -6,6 +6,9 @@
 *.terraform.lock.hcl
 # Log files
 *.log
+node_modules/
+dist/
+.angular/
 
 # Package Files
 *.jar

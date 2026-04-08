@@ -1,18 +1,18 @@
 
-resource "aws_instance" "example" {
-  ami           = var.ami_id
+module aws_ec2 {
+  source = "./aws_ec2"
+  ami_id = data.aws_ami.window.id
   instance_type = var.instance_type
+}
 
-  tags = {
-    Name = "jatin"
-  }
+module aws_s3 {
+  count      = var.create_s3 ? 1 : 0
+  source     = "./aws_s3"
+  bucketname = var.bucketname
 }
 
 
-resource "aws_s3_bucket" "example_bucket" {
-  bucket = "example-bucket-terraform-2024"
 
-  tags = {
-    Name = "ExampleBucket"
-  }
-}
+
+
+
